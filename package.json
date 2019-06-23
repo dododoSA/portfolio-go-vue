@@ -4,7 +4,7 @@
   "description": "A Vue.js project",
   "author": "ryuon <dododosa14@gmail.com>",
   "scripts": {
-    "postinstall": "npm --prefix ./vue-app install ./vue-app && cd ./vue-app && npm run build"
+    "postinstall": "npm --prefix ./front install ./front && cd ./front && npm run build"
   },
   "engines": {
     "node": ">= 6.0.0",
