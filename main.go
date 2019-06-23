@@ -13,7 +13,7 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/hello", func(c echo.Context) error {
+	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello")
 	})
 
