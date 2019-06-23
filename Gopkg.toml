@@ -35,6 +35,5 @@
 
 [metadata.heroku]
   root-package = "Portfolio"
-  go-version = "go1.12.6"
   install = [",", "./cmd/..."]
   ensure = "true"
