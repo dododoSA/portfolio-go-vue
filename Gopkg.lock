@@ -110,9 +110,3 @@
   input-imports = ["github.com/labstack/echo"]
   solver-name = "gps-cdcl"
   solver-version = 1
-
-[metadata.heroku]
-  root-package = "Portfolio"
-  go-version = "go1.12.6"
-  install = [",", "./cmd/..."]
-  ensure = "true"
