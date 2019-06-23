@@ -12,7 +12,7 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Static("/", "front/dist/index.html")
+	e.Static("/", "/front/dist")
 	e.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello")
 	})
