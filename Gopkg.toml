@@ -35,5 +35,5 @@
 
 [metadata.heroku]
   root-package = "Portfolio"
-  install = [","]
+  install = ["."]
   ensure = "true"
