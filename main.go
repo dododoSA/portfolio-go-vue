@@ -47,7 +47,7 @@ func postSignUpHandler(c echo.Context) error {
 	if req.Password == "" || req.Username == "" {
 		return c.String(http.StatusBadRequest, "項目が空です")
 	}
-	if req.Password <= 6 {
+	if len(req.Password.length) <= 6 {
 		return c.String(http.StatusBadRequest, "パスワードが短すぎます")
 	}
 
@@ -124,7 +124,7 @@ func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 func main() {
 	e := echo.New()
 
-	e.Use(session.Middleware(sessions.NewCookieStore([]byte(secret))))
+	e.Use(session.Middleware(sessions.NewCookieStore([]byte("secret"))))
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Static("/", "front/dist/")
@@ -132,7 +132,7 @@ func main() {
 		return c.String(http.StatusOK, "Hello")
 	})
 	e.POST("/login", postLoginHandler)
-	e.POST("/signup", postSignUpHandler())
+	e.POST("/signup", postSignUpHandler)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
