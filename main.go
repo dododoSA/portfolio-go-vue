@@ -57,9 +57,9 @@ func postSignUpHandler(c echo.Context) error {
 	}
 
 	var count int
-	err = Db.QueryRow("SELECT id FROM users WHERE name = $1", req.Username).Scan(&count)
+	err = Db.QueryRow("SELECT COUNT(*) FROM users WHERE name = $1", req.Username).Scan(&count)
 	if err != nil {
-		return c.String(http.StatusInternalServerError, fmt.Sprintf("db error: %v", err))
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
 	if count > 0 {
 		return c.String(http.StatusConflict, "ユーザーがすでに存在しています")
@@ -67,7 +67,7 @@ func postSignUpHandler(c echo.Context) error {
 
 	_, err = Db.Exec("INSERT INTO users (name, hashed_pass) values ($1, $2)", req.Username, hashedPass)
 	if err != nil {
-		return c.String(http.StatusInternalServerError, fmt.Sprintf("db err: %v", err))
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errB: %v", err))
 	}
 
 	return c.NoContent(http.StatusCreated)
