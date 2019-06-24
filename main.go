@@ -57,7 +57,7 @@ func postSignUpHandler(c echo.Context) error {
 	}
 
 	var count int
-	row := Db.QueryRow("SELECT id FROM users WHERE name = $1", req.Username).Scan(&count)
+	rerr = Db.QueryRow("SELECT id FROM users WHERE name = $1", req.Username).Scan(&count)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db error: %v", err))
 	}
