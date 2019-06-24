@@ -47,7 +47,7 @@ func postSignUpHandler(c echo.Context) error {
 	if req.Password == "" || req.Username == "" {
 		return c.String(http.StatusBadRequest, "項目が空です")
 	}
-	if len(req.Password.length) <= 6 {
+	if len(req.Password) <= 6 {
 		return c.String(http.StatusBadRequest, "パスワードが短すぎます")
 	}
 
