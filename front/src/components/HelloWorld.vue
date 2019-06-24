@@ -16,9 +16,13 @@ export default {
     }
   },
   methods: {
-    apiHello: async function () {
-      let res = await axios.get('https://portfolio-go-vue.herokuapp.com/hello')
-      this.msg = res.data
+    apiHello: function () {
+      axios.get('https://portfolio-go-vue.herokuapp.com/hello')
+        .then(response => {
+          if (response.status === 200){
+            this.msg = response.data
+          }
+        })
     }
   }
 }
