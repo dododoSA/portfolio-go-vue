@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'Login',
     data () {
@@ -22,12 +23,15 @@ export default {
     methods: {
         logIn: function(){
             if (this.username != '' && this.password != ''){
-                this.$http.post('https://portfolio-go-vue.herokuapp.com/login', newuser, function(data, status, request){
-                    console.log("login success")
-                    console.log(status)
-                    this.$router.push({name: 'HelloWorld'})
-                }).error(function (data, status, request){
-                    console.log("login failed")
+                axios.post('https://portfolio-go-vue.herokuapp.com/login',{
+                    username: this.username,
+                    password: this.password
+                })
+                .then(function(){
+                    console.log(response)
+                })
+                .catch(function (error){
+                    console.log(error)
                 })
             }
         }
