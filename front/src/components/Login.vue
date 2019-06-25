@@ -23,11 +23,11 @@ export default {
     methods: {
         logIn: function(){
             if (this.username != '' && this.password != ''){
-                let params = new URLSearchParams()
-                params.append('username', this.username)
-                params.append('password', this.password)
-                axios.post('https://portfolio-go-vue.herokuapp.com/login',{
-                    params
+                axios.post('https://portfolio-go-vue.herokuapp.com/login', {
+                    params : {
+                        username: this.username,
+                        password: this.password
+                    }
                 })
                 .then(function(){
                     console.log(response)
