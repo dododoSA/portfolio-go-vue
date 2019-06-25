@@ -24,10 +24,8 @@ export default {
         logIn: function(){
             if (this.username != '' && this.password != ''){
                 axios.post('https://portfolio-go-vue.herokuapp.com/login', {
-                    params : {
-                        username: this.username,
-                        password: this.password
-                    }
+                    username: this.username,
+                    password: this.password
                 })
                 .then(function(){
                     console.log(response)
