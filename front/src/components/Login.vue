@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         logIn: function(){
-            if (newuser.username != '' && newuser.password != ''){
+            if (this.username != '' && this.password != ''){
                 this.$http.post('https://portfolio-go-vue.herokuapp.com/login', newuser, function(data, status, request){
                     console.log("login success")
                     console.log(status)
