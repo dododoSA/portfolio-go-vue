@@ -86,8 +86,7 @@ func postLoginHandler(c echo.Context) error {
 	err = bcrypt.CompareHashAndPassword([]byte(user.HashedPass), []byte(req.Password))
 	if err != nil {
 		if err == bcrypt.ErrMismatchedHashAndPassword {
-			return c.String(http.StatusForbidden, req.Username+":"+req.Password)
-			//c.NoContent(http.StatusForbidden)
+			return c.NoContent(http.StatusForbidden)
 		} else {
 			return c.NoContent(http.StatusInternalServerError)
 		}
