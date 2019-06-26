@@ -22,6 +22,7 @@ export default {
     },
     methods: {
         signUp: function() {
+            let _this = this
             if (this.username != '' && this.password != ''){
                 axios.post('/signup',{
                     username: this.username,
@@ -29,7 +30,7 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    this.$router.push('/')
+                    _this.$router.push('/')
                 })
                 .catch(function(error){
                     console.log(error)
