@@ -14,7 +14,7 @@
 import axios from 'axios'
 export default {
     name: 'Login',
-    data () {
+    data: ()=> {
         return {
             username: '',
             password: ''
@@ -23,12 +23,9 @@ export default {
     methods: {
         logIn: function(){
             if (this.username != '' && this.password != ''){
-                let formData = new FormData()
-                formData.append("username", this.username)
-                formData.append("password", this.password)
-                
-                axios.post('https://portfolio-go-vue.herokuapp.com/login', {
-                    formData
+                axios.post('/login', {
+                    username: this.username,
+                    password: this.password
                 })
                 .then(function(){
                     console.log(response)
