@@ -22,14 +22,15 @@ export default {
     },
     methods: {
         logIn: function(){
+            let _this = this
             if (this.username != '' && this.password != ''){
                 axios.post('/login', {
                     username: this.username,
                     password: this.password
                 })
-                .then(function(){
+                .then(function(response){
                     console.log(response)
-                    this.$router.push('/')
+                    _this.$router.push('/')
                 })
                 .catch(function (error){
                     console.log(error)
