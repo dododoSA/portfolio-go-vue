@@ -23,7 +23,7 @@ export default {
     methods: {
         signUp: function() {
             if (this.username != '' && this.password != ''){
-                axios.post('https://portfolio-go-vue.herokuapp.com/signup',{
+                axios.post('/signup',{
                     username: this.username,
                     password: this.password
                 })
@@ -33,6 +33,7 @@ export default {
                 .catch(function(error){
                     console.log(error)
                 })
+                this.router.push({name : 'HelloWorld'})
             }
         }
     }
