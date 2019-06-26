@@ -29,11 +29,11 @@ export default {
                 })
                 .then(function(){
                     console.log(response)
+                    this.$router.push({name : 'HelloWorld'})
                 })
                 .catch(function (error){
                     console.log(error)
                 })
-                this.router.push({name : 'HelloWorld'})
             }
         }
     }
