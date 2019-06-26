@@ -29,7 +29,7 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    this.$router.push({name : 'HelloWorld'})
+                    this.$router.push('/')
                 })
                 .catch(function(error){
                     console.log(error)
