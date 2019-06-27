@@ -21,11 +21,11 @@ export default {
     },
     created: function() {
         let _this = this
-        axios.get("/users/" + String(_this.id))
-        .then(function(response){
+        axios.get("/users/" + _this.id)
+        .then(function(response) {
             _this.userdata = response.data
         })
-        .catch(function(error){
+        .catch(function(error) {
             console.log(error)
         })
     },
