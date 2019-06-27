@@ -3,7 +3,7 @@
         <h2>作品一覧</h2>
         <ul v-for="product in products" v-bind:key="product.id">
             <li>
-                {{product.name}}
+                {{product.productname}}
             </li>
             <li>
                 {{product.intro}}
@@ -16,7 +16,9 @@
 import axios from 'axios'
 export default {
     name: 'User',
-    props: ['id'],//ユーザーのid 複数おｋにするつもり
+    props: {
+        id: String
+    },//ユーザーのid 複数おｋにするつもり
     data: () => {
         return {
             products: {}

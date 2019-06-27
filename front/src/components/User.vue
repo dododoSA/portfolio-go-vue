@@ -1,7 +1,7 @@
 <template>
 <div class="user">
     <h2>ユーザー紹介</h2>
-    <p>{{userdata.name}}</p>
+    <p>{{userdata.username}}</p>
     <br/>
     <p>{{userdata.profile}}</p>
     <product :id="id"></product>
@@ -13,7 +13,9 @@ import axios from 'axios'
 import Product from './Product.vue'
 export default {
     name: 'User',
-    props: ['id'],
+    props: {
+        id: String
+    },
     data: () => {
         return {
             userdata: {}
