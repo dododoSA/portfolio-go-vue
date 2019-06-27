@@ -39,6 +39,15 @@ type LoginRequestBody struct {
 	Password string `json:"password"`
 }
 
+type Product struct {
+	Id      int    `json:"id"`
+	Name    string `json:"productname`
+	Intro   string `json:"intro"`
+	ImgName string `json:"img_name"`
+	Url     string `json:"url"`
+	UserId  int    `json:"user_id"`
+}
+
 func postSignUpHandler(c echo.Context) error {
 	req := LoginRequestBody{}
 	c.Bind(&req)
@@ -121,6 +130,18 @@ func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 	}
 }
 
+func getProductsHandler(c echo.Context) error {
+	productId := c.Param("id")
+
+	product := Product{}
+	err := Db.QueryRow("SELECT * FROM products WHERE id = $1", productId).Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
+	if err != nil {
+		return c.NoContent(http.StatusNotFound)
+	}
+
+	return c.JSON(http.StatusOK, product)
+}
+
 func main() {
 	e := echo.New()
 
@@ -131,6 +152,7 @@ func main() {
 	e.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello")
 	})
+	e.GET("/products/:id", getProductsHandler)
 	e.POST("/login", postLoginHandler)
 	e.POST("/signup", postSignUpHandler)
 
