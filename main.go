@@ -140,7 +140,7 @@ func getProductsHandler(c echo.Context) error {
 	}
 	defer rows.Close()
 	for rows.Next(){
-		product := Product{}
+		product := make([]Product, 0)
 		err := rows.Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
 		if err != nil {
 			return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
