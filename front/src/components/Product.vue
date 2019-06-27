@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'User',
     props: ['id'],//ユーザーのid 複数おｋにするつもり

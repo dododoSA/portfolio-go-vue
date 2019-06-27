@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Product from './Product.vue'
 export default {
     name: 'User',
