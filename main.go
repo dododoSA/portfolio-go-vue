@@ -133,14 +133,14 @@ func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 func getProductsHandler(c echo.Context) error {
 	userId := c.Param("id")
 
-	products := []Product
-	rows, err := Db.Query("SELECT * FROM products WHERE user_id = $1",userId)
+	products := make([]Product, 0)
+	rows, err := Db.Query("SELECT * FROM products WHERE user_id = $1", userId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
 	defer rows.Close()
-	for rows.Next(){
-		product := make([]Product, 0)
+	for rows.Next() {
+		product := Product{}
 		err := rows.Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
 		if err != nil {
 			return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
