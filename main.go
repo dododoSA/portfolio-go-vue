@@ -27,11 +27,11 @@ func init() {
 }
 
 type User struct {
-	Id         int    `json:"id"`
-	Name       string `json:"username"`
-	HashedPass string `json:"hashed_pass"`
-	Profile    string `json:"profile"`
-	ImgName    string `json:"img_name"`
+	Id         int            `json:"id"`
+	Name       string         `json:"username"`
+	HashedPass string         `json:"hashed_pass"`
+	Profile    string         `json:"profile"`
+	ImgName    sql.NullString `json:"img_name"`
 }
 
 type LoginRequestBody struct {
@@ -40,12 +40,12 @@ type LoginRequestBody struct {
 }
 
 type Product struct {
-	Id      int    `json:"id"`
-	Name    string `json:"productname`
-	Intro   string `json:"intro"`
-	ImgName string `json:"img_name"`
-	Url     string `json:"url"`
-	UserId  int    `json:"user_id"`
+	Id      int            `json:"id"`
+	Name    string         `json:"productname`
+	Intro   string         `json:"intro"`
+	ImgName sql.NullString `json:"img_name"`
+	Url     sql.NullString `json:"url"`
+	UserId  int            `json:"user_id"`
 }
 
 func postSignUpHandler(c echo.Context) error {
@@ -131,10 +131,10 @@ func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 func getProductsHandler(c echo.Context) error {
-	//productId := c.Param("id")
+	productId := c.Param("id")
 
 	product := Product{}
-	err := Db.QueryRow("SELECT * FROM products WHERE id = $1", 1).Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
+	err := Db.QueryRow("SELECT * FROM products WHERE id = $1", productId).Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
