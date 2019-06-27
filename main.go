@@ -150,6 +150,16 @@ func getProductsHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, products)
 }
 
+func getUserHandler(c echo.Context) error {
+	userId := c.Param("id")
+	user := User{}
+	err := Db.QueryRow("SELECT profile, img_name, name FROM users WHERE id = $1", userId).Scan(&user.Profile, &user.ImgName, &user.Name)
+	if err != nil {
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
+	}
+	return c.JSON(http.StatusOK, user)
+}
+
 func main() {
 	e := echo.New()
 
@@ -160,7 +170,8 @@ func main() {
 	e.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello")
 	})
-	e.GET("/user/:id/products", getProductsHandler)
+	e.GET("/users/:id/products", getProductsHandler)
+	e.GET("/users/:id", getUserHandler)
 	e.POST("/login", postLoginHandler)
 	e.POST("/signup", postSignUpHandler)
 
