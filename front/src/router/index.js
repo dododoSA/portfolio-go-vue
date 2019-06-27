@@ -30,7 +30,10 @@ export default new Router({
     },
     {
       path: '/users/:id',
-      component: User
+      component: User,
+      props: route => ({
+        id: String(route.params.id)
+      })
     }
   ]
 })
