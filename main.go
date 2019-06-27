@@ -136,7 +136,7 @@ func getProductsHandler(c echo.Context) error {
 	product := Product{}
 	err := Db.QueryRow("SELECT * FROM products WHERE id = $1", productId).Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
 	if err != nil {
-		return c.NoContent(http.StatusNotFound)
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
 
 	return c.JSON(http.StatusOK, product)
