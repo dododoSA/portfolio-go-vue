@@ -131,7 +131,7 @@ func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 func getProductsHandler(c echo.Context) error {
-	productId := c.Param("id")
+	//productId := c.Param("id")
 
 	product := Product{}
 	err := Db.QueryRow("SELECT * FROM products WHERE id = $1", 1).Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
