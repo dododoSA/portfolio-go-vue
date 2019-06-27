@@ -1,18 +1,35 @@
 <template>
-    <h2>作品一覧</h2>
+<div class="user">
+    <h2>ユーザー紹介</h2>
+    <p>{{userdata.name}}</p>
+    <br/>
+    <p>{{userdata.profile}}</p>
+    <product :id="id"></product>
+</div>
 </template>
 
 <script>
+import Product from './Product.vue'
 export default {
     name: 'User',
     props: ['id'],
     data: () => {
         return {
-            products: {}
+            userdata: {}
         }
     },
     created: function() {
-        
+        let _this = this
+        axios.get("/users/" + String(_this.id))
+        .then(function(response){
+            _this.userdata = response.data
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+    },
+    components: {
+        Product
     }
 }
 </script>
