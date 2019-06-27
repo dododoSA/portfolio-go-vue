@@ -41,7 +41,7 @@ type LoginRequestBody struct {
 
 type Product struct {
 	Id      int            `json:"id"`
-	Name    string         `json:"productname`
+	Name    string         `json:"productname"`
 	Intro   string         `json:"intro"`
 	ImgName sql.NullString `json:"img_name"`
 	Url     sql.NullString `json:"url"`
@@ -131,15 +131,23 @@ func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 }
 
 func getProductsHandler(c echo.Context) error {
-	productId := c.Param("id")
+	userId := c.Param("id")
 
-	product := Product{}
-	err := Db.QueryRow("SELECT * FROM products WHERE id = $1", productId).Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
+	products := []Product
+	rows, err := Db.Query("SELECT * FROM products WHERE user_id = $1",userId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
-
-	return c.JSON(http.StatusOK, product)
+	defer rows.Close()
+	for rows.Next(){
+		product := Product{}
+		err := rows.Scan(&product.Id, &product.Name, &product.Intro, &product.ImgName, &product.Url, &product.UserId)
+		if err != nil {
+			return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
+		}
+		products = append(products, product)
+	}
+	return c.JSON(http.StatusOK, products)
 }
 
 func main() {
@@ -152,7 +160,7 @@ func main() {
 	e.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello")
 	})
-	e.GET("/products/:id", getProductsHandler)
+	e.GET("/user/:id/products", getProductsHandler)
 	e.POST("/login", postLoginHandler)
 	e.POST("/signup", postSignUpHandler)
 
