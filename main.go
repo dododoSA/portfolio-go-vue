@@ -30,7 +30,7 @@ type User struct {
 	Id         int            `json:"id"`
 	Name       string         `json:"username"`
 	HashedPass string         `json:"hashed_pass"`
-	Profile    string         `json:"profile"`
+	Profile    sql.NullString `json:"profile"`
 	ImgName    sql.NullString `json:"img_name"`
 }
 
