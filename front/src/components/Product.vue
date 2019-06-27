@@ -24,7 +24,7 @@ export default {
     },
     created: function() {
         let _this = this
-        axios.get("/users/" + String(_this.id) +"/products")
+        axios.get("/users/" + _this.id +"/products")
         .then(function(response){
             _this.products = response.data
         })
