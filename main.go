@@ -163,7 +163,7 @@ func postCreateProductHandler(c echo.Context) error {
 	c.Bind(&req)
 
 	//ログインしているユーザーかどうかチェック（関数化したい）
-	err := Db.QueryRow("SELECT profile, img_name, name FROM users WHERE id = $1", userId).Scan(&user.Profile, &user.ImgName, &user.Name)
+	err := Db.QueryRow("SELECT name FROM users WHERE id = $1", userId).Scan(&userName)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
