@@ -160,6 +160,20 @@ func getUserHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, user)
 }
 
+type Me struct {
+	UserId string `json:"username"`
+}
+
+func getWhoAmIHandler(c echo.Context) error {
+	userName := c.Get("userName").(string)
+	me := Me{}
+	err := Db.QueryRow("SELECT id FROM users WHERE name = $1", userName).Scan(&me.UserId)
+	if err != nil {
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
+	}
+	return c.JSON(http.StatusOK, me)
+}
+
 func main() {
 	e := echo.New()
 
@@ -172,6 +186,7 @@ func main() {
 	})
 	e.GET("/users/:id/products", getProductsHandler)
 	e.GET("/users/:id", getUserHandler)
+	e.GET("/whoami", getWhoAmIHandler)
 	e.POST("/login", postLoginHandler)
 	e.POST("/signup", postSignUpHandler)
 
