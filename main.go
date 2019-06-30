@@ -48,6 +48,11 @@ type Product struct {
 	UserId  int            `json:"user_id"`
 }
 
+type NewProductRequestBody struct {
+	Name  string `json:"product_name"`
+	Intro string `json:"intro"7`
+}
+
 func postSignUpHandler(c echo.Context) error {
 	req := LoginRequestBody{}
 	c.Bind(&req)
@@ -150,6 +155,40 @@ func getProductsHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, products)
 }
 
+func postCreateProductHandler(c echo.Context) {
+	req := NewProductRequestBody{}
+
+	var userName string
+	userId := c.Param("id")
+	c.Bind(&req)
+
+	//ログインしているユーザーかどうかチェック（関数化したい）
+	err := Db.QueryRow("SELECT profile, img_name, name FROM users WHERE id = $1", userId).Scan(&user.Profile, &user.ImgName, &user.Name)
+	if err != nil {
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
+	}
+	sess, err := session.Get("sessions", c)
+	if err != nil {
+		fmt.Println(err)
+		return c.String(http.StatusInternalServerError, "something wrong in getting session")
+	}
+	if userName != sess.Values["userName"] {
+		return c.String(http.StatusForbidden, "invalid user")
+	}
+
+	//Validation
+	if req.Name == "" {
+		return c.String(http.StatusBadRequest, "項目が空です")
+	}
+
+	_, err = Db.Exec("INSERT INTO products (name, intro, user_id) values ($1, $2, $3)", req.Name, req.Intro, userId)
+	if err != nil {
+		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errB: %v", err))
+	}
+
+	return c.NoContent(http.StatusCreated)
+}
+
 func getUserHandler(c echo.Context) error {
 	userId := c.Param("id")
 	user := User{}
@@ -196,6 +235,7 @@ func main() {
 	e.GET("/users/:id", getUserHandler)
 	e.GET("/whoami", getWhoAmIHandler)
 	e.POST("/login", postLoginHandler)
+	e.POST("/users/:id/products/create")
 	e.POST("/signup", postSignUpHandler)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))

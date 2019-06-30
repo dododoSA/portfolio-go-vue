@@ -1,6 +1,6 @@
 <template>
     <div class="products">
-			<p v-if="currentuserId == id">新規投稿</p>
+			<router-link to="{ name: 'products-new', path: '/users/' + id + '/products/new' }" v-if="currentuserId == id">新規投稿</router-link>
         <h2>作品一覧</h2>
         <ul v-for="product in products" v-bind:key="product.id">
             <li>
@@ -42,7 +42,7 @@ export default {
         .catch(function(error){
             console.log(error)
 				})
-    }
+		}
 }
 </script>
 

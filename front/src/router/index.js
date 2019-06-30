@@ -34,6 +34,13 @@ export default new Router({
       props: route => ({
         id: String(route.params.id)
       })
+    },
+    {
+      path: '/users/:id/products/new',
+      name: 'products-new',
+      props: route => ({
+        id: String(route.params.id)
+      })
     }
   ]
 })

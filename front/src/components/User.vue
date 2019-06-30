@@ -3,7 +3,7 @@
     <h2>ユーザー紹介</h2>
     <p>{{userdata.username}}</p>
     <br/>
-    <p>{{userdata.profile}}</p>
+    <p v-if="userdata.profile != ''">{{userdata.profile}}</p>
     <product :id="id"></product>
 </div>
 </template>
