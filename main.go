@@ -166,6 +166,9 @@ type Me struct {
 
 func getWhoAmIHandler(c echo.Context) error {
 	userName := c.Get("userName").(string)
+	if userName["userName"] == nil {
+		return c.String(http.StatusForbidden, "please login")
+	}
 	me := Me{}
 	err := Db.QueryRow("SELECT id FROM users WHERE name = $1", userName).Scan(&me.UserId)
 	if err != nil {
@@ -186,11 +189,9 @@ func main() {
 	})
 	e.GET("/users/:id/products", getProductsHandler)
 	e.GET("/users/:id", getUserHandler)
+	e.GET("/whoami", getWhoAmIHandler)
 	e.POST("/login", postLoginHandler)
 	e.POST("/signup", postSignUpHandler)
-	withLogin := e.Group("")
-	withLogin.Use(checkLogin)
-	withLogin.GET("/whoami", getWhoAmIHandler)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
