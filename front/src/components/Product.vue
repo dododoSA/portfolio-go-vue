@@ -1,5 +1,6 @@
 <template>
     <div class="products">
+			<p v-if="currentuserId == id">新規投稿</p>
         <h2>作品一覧</h2>
         <ul v-for="product in products" v-bind:key="product.id">
             <li>
@@ -21,18 +22,26 @@ export default {
     },//ユーザーのid 複数おｋにするつもり
     data: () => {
         return {
-            products: {}
+						products: {},
+						currentuserId: ''
         }
     },
     created: function() {
         let _this = this
         axios.get("/users/" + _this.id +"/products")
         .then(function(response){
-            _this.products = response.data
-        })
+          _this.products = response.data
+					axios.get('/whoami')
+					.then(function(response){
+						_this.currentuserId = response.data.user_id
+					})
+					.catch(function(error){
+						console.log(error)
+					})
+				})
         .catch(function(error){
             console.log(error)
-        })
+				})
     }
 }
 </script>

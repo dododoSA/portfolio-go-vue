@@ -175,7 +175,7 @@ func getWhoAmIHandler(c echo.Context) error {
 		return c.String(http.StatusForbidden, "please login")
 	}
 	me := Me{}
-	err := Db.QueryRow("SELECT id FROM users WHERE name = $1", userName).Scan(&me.UserId)
+	err = Db.QueryRow("SELECT id FROM users WHERE name = $1", userName).Scan(&me.UserId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
