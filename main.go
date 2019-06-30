@@ -186,9 +186,11 @@ func main() {
 	})
 	e.GET("/users/:id/products", getProductsHandler)
 	e.GET("/users/:id", getUserHandler)
-	e.GET("/whoami", getWhoAmIHandler)
 	e.POST("/login", postLoginHandler)
 	e.POST("/signup", postSignUpHandler)
+	withLogin := e.Group("")
+	withLogin.Use(checkLogin)
+	withLogin.GET("/whoami", getWhoAmIHandler)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
