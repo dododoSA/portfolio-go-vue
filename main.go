@@ -165,8 +165,13 @@ type Me struct {
 }
 
 func getWhoAmIHandler(c echo.Context) error {
-	userName := c.Get("userName").(string)
-	if userName == "" {
+	sess, err := session.Get("sessions", c)
+	if err != nil {
+		fmt.Println(err)
+		return c.String(http.StatusInternalServerError, "something wrong in getting session")
+	}
+	userName := sess.Values["userName"]
+	if userName == nil {
 		return c.String(http.StatusForbidden, "please login")
 	}
 	me := Me{}
