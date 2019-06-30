@@ -166,7 +166,7 @@ type Me struct {
 
 func getWhoAmIHandler(c echo.Context) error {
 	userName := c.Get("userName").(string)
-	if userName["userName"] == nil {
+	if userName == nil || "" {
 		return c.String(http.StatusForbidden, "please login")
 	}
 	me := Me{}
