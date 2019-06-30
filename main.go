@@ -155,7 +155,7 @@ func getProductsHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, products)
 }
 
-func postCreateProductHandler(c echo.Context) {
+func postCreateProductHandler(c echo.Context) error {
 	req := NewProductRequestBody{}
 
 	var userName string
@@ -235,7 +235,7 @@ func main() {
 	e.GET("/users/:id", getUserHandler)
 	e.GET("/whoami", getWhoAmIHandler)
 	e.POST("/login", postLoginHandler)
-	e.POST("/users/:id/products/create")
+	e.POST("/users/:id/products/create", postCreateProductHandler)
 	e.POST("/signup", postSignUpHandler)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
