@@ -161,7 +161,7 @@ func getUserHandler(c echo.Context) error {
 }
 
 type Me struct {
-	UserId string `json:"username"`
+	UserId string `json:"user_id"`
 }
 
 func getWhoAmIHandler(c echo.Context) error {
