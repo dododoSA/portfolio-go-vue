@@ -41,6 +41,7 @@ export default {
       _this.currentuserId = res.data.user_id
     })
     .catch(function(error){
+      _this.currentuserId = ''
       console.log(error)
     })
   }
