@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <nav>
-      <ul>
+      <ul style="list-style: none;">
         <li v-if="currntuserId != ''"><router-link :to="{ path: '/users/'+ currentuserId}">User</router-link></li> 
         <li v-if="currntuserId == ''"><router-link to="/signup">SignUp</router-link></li>
         <li v-if="currntuserId == ''"><router-link to="/login">Login</router-link></li>
-        <li v-else><a href="#" @click="logout">ログアウト</a></li>
+        <li v-if="currntuserId != ''"><a href="#" @click="logout">ログアウト</a></li>
       </ul>
     </nav>
     <img src="./assets/logo.png">
