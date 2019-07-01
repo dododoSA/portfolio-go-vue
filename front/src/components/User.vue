@@ -4,8 +4,8 @@
     <p>{{userdata.username}}</p>
     <br/>
     <p v-if="userdata.profile != ''">{{userdata.profile}}</p>
-        <a href="#" @click="logout" v-if="currentuserId == id">ログアウト</a>
-    <product :id="id"></product>
+    <a href="#" @click="logout" v-if="currentuserId == id">ログアウト</a>
+    <product :id="id" :currentuserId="currentuserId"></product>
 </div>
 </template>
 
@@ -19,7 +19,8 @@ export default {
     },
     data: () => {
         return {
-            userdata: {}
+            userdata: {},
+			currentuserId: ''
         }
     },
     methods: {
@@ -41,6 +42,14 @@ export default {
             _this.userdata = response.data
         })
         .catch(function(error) {
+            console.log(error)
+        })
+        
+		axios.get('/whoami')
+		.then(function(response){
+			_this.currentuserId = response.data.user_id
+        })
+        .catch(function(error){
             console.log(error)
         })
     },

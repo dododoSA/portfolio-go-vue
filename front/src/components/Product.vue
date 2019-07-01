@@ -18,31 +18,24 @@ import axios from 'axios'
 export default {
     name: 'User',
     props: {
-        id: String
+        id: String,
+        currentuserId: String
     },//ユーザーのid 複数おｋにするつもり
     data: () => {
         return {
-						products: {},
-						currentuserId: ''
+						products: {}
         }
     },
     created: function() {
         let _this = this
         axios.get("/users/" + _this.id +"/products")
         .then(function(response){
-          _this.products = response.data
-					axios.get('/whoami')
-					.then(function(response){
-						_this.currentuserId = response.data.user_id
-					})
-					.catch(function(error){
-						console.log(error)
-					})
-				})
+            _this.products = response.data
+		})
         .catch(function(error){
             console.log(error)
-				})
-		}
+		})
+	}
 }
 </script>
 
