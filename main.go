@@ -215,9 +215,6 @@ func getUserHandler(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
 	}
-	if user.Profile == "" {
-
-	}
 	return c.JSON(http.StatusOK, user)
 }
 
