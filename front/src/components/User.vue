@@ -32,7 +32,7 @@ export default {
             .catch(function(error){
                 console.log(error)
             })
-            this.$route.push('/')
+            this.$router.push('/')
         }
     },
     created: function() {
