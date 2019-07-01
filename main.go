@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -26,12 +27,30 @@ func init() {
 	}
 }
 
+type NullString struct {
+	sql.NullString
+}
+
+func (s NullString) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.String)
+}
+
+func (s *NullString) UnmarshalJSON(data []byte) error {
+	var str string
+	if err := json.Unmarshal(data, &str); err != nil {
+		return err
+	}
+	s.String = str
+	s.Valid = str != ""
+	return nil
+}
+
 type User struct {
-	Id         int            `json:"id"`
-	Name       string         `json:"username"`
-	HashedPass string         `json:"hashed_pass"`
-	Profile    sql.NullString `json:"profile"`
-	ImgName    sql.NullString `json:"img_name"`
+	Id         int        `json:"id"`
+	Name       string     `json:"username"`
+	HashedPass string     `json:"hashed_pass"`
+	Profile    NullString `json:"profile"`
+	ImgName    NullString `json:"img_name"`
 }
 
 type LoginRequestBody struct {
@@ -40,12 +59,12 @@ type LoginRequestBody struct {
 }
 
 type Product struct {
-	Id      int            `json:"id"`
-	Name    string         `json:"productname"`
-	Intro   string         `json:"intro"`
-	ImgName sql.NullString `json:"img_name"`
-	Url     sql.NullString `json:"url"`
-	UserId  int            `json:"user_id"`
+	Id      int        `json:"id"`
+	Name    string     `json:"productname"`
+	Intro   string     `json:"intro"`
+	ImgName NullString `json:"img_name"`
+	Url     NullString `json:"url"`
+	UserId  int        `json:"user_id"`
 }
 
 type NewProductRequestBody struct {
@@ -195,6 +214,9 @@ func getUserHandler(c echo.Context) error {
 	err := Db.QueryRow("SELECT profile, img_name, name FROM users WHERE id = $1", userId).Scan(&user.Profile, &user.ImgName, &user.Name)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errorA: %v", err))
+	}
+	if user.Profile == "" {
+
 	}
 	return c.JSON(http.StatusOK, user)
 }
