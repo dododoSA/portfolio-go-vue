@@ -2,9 +2,9 @@
   <div id="app">
     <nav>
       <ul style="list-style: none;">
-        <li v-if="currntuserId != ''"><router-link :to="{ path: '/users/'+ currentuserId}">User</router-link></li> 
-        <li v-if="currntuserId == ''"><router-link to="/signup">SignUp</router-link></li>
-        <li v-if="currntuserId == ''"><router-link to="/login">Login</router-link></li>
+        <li v-if="currntuserId != ''"><a href="#" @click="user">User</a></li> 
+        <li v-if="currntuserId == ''"><a href="#" @click="signup">SignUp</a></li>
+        <li v-if="currntuserId == ''"><a href="#" @click="login">Login</a></li>
         <li v-if="currntuserId != ''"><a href="#" @click="logout">ログアウト</a></li>
       </ul>
     </nav>
@@ -32,6 +32,16 @@ export default {
               console.log(error)
           })
           this.$router.push('/')
+      },
+      //なぜかrouter-linkできないので
+      signup: function() {
+        this.$router.push('/signup')
+      },
+      user: function() {
+        this.$router.push('/users/' + currentuserId)
+      },
+      login: function() {
+        this.$router.push('/login')
       }
   },
   created: function(){
