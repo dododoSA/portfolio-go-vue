@@ -30,7 +30,7 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    _this.$router.push('/'+_this.id)
+                    _this.$router.push('/users/'+_this.id)
                 })
                 .catch(function(error){
                     console.log(error)

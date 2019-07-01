@@ -1,6 +1,6 @@
 <template>
     <div class="products">
-			<router-link to="{ path: '/users/:id/products/new', params:{id: id} }" v-if="currentuserId == id">新規投稿</router-link>
+			<router-link lto="{ path: '/users/:id/products/new', params:{id: id} }" v-if="currentuserId == id">新規投稿</router-link>
         <h2>作品一覧</h2>
         <ul v-for="product in products" v-bind:key="product.id">
             <li>
