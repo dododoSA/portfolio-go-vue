@@ -38,7 +38,7 @@ export default {
         this.$router.push('/signup')
       },
       user: function() {
-        this.$router.push('/users/' + currentuserId)
+        this.$router.push('/users/' + this.currentuserId)
       },
       login: function() {
         this.$router.push('/login')
@@ -49,9 +49,11 @@ export default {
     axios.get('/whoami')
     .then(function(res){
       _this.currentuserId = res.data.user_id
+      if (res.status != 200) {
+        _this.currentuserId = ''
+      }
     })
     .catch(function(error){
-      _this.currentuserId = ''
       console.log(error)
     })
   }
