@@ -1,6 +1,6 @@
 <template>
     <div class="products">
-        <a @click="logout">ログアウト</a>
+        <a href="#" @click="logout">ログアウト</button>
 			<router-link :to="{ path: '/users/'+ id + '/products/new'}" v-if="currentuserId == id">新規投稿</router-link>
         <h2>作品一覧</h2>
         <ul v-for="product in products" v-bind:key="product.id">
