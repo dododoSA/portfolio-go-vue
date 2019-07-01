@@ -21,7 +21,7 @@ export default {
         }
     },
     methods: {
-        signUp: function() {
+        postProduct: function() {
             let _this = this
             if (this.productName != '' && this.intro != ''){
                 axios.post('/users/' + _this.id + '/products/create',{
