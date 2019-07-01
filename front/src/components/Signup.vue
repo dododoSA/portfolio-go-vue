@@ -30,7 +30,13 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    _this.$router.push('/')
+                    axios.get('/whoami')
+					.then(function(res){
+                        _this.$router.push('/users/' + res.data.user_id)
+					})
+					.catch(function(error){
+						console.log(error)
+					})
                 })
                 .catch(function(error){
                     console.log(error)

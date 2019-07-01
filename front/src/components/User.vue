@@ -4,6 +4,7 @@
     <p>{{userdata.username}}</p>
     <br/>
     <p v-if="userdata.profile != ''">{{userdata.profile}}</p>
+        <a href="#" @click="logout" v-if="currentuserId == id">ログアウト</a>
     <product :id="id"></product>
 </div>
 </template>
@@ -19,6 +20,18 @@ export default {
     data: () => {
         return {
             userdata: {}
+        }
+    },
+    methods: {
+        logout: function (){
+            axios.post("/logout")
+            .then(function(response){
+                console.log(response)
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+            this.$route.push('/')
         }
     },
     created: function() {
