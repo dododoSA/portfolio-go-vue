@@ -2,10 +2,10 @@
   <div id="app">
     <nav>
       <ul style="list-style: none;">
-        <li v-if="currntuserId != ''"><a href="#" @click="user">User</a></li> 
-        <li v-if="currntuserId == ''"><a href="#" @click="signup">SignUp</a></li>
-        <li v-if="currntuserId == ''"><a href="#" @click="login">Login</a></li>
-        <li v-if="currntuserId != ''"><a href="#" @click="logout">ログアウト</a></li>
+        <li v-if="currntuserId != null"><a href="#" @click="user">User</a></li> 
+        <li v-if="currntuserId == null"><a href="#" @click="signup">SignUp</a></li>
+        <li v-if="currntuserId == null"><a href="#" @click="login">Login</a></li>
+        <li v-if="currntuserId != null"><a href="#" @click="logout">ログアウト</a></li>
       </ul>
     </nav>
     <img src="./assets/logo.png">
@@ -49,12 +49,10 @@ export default {
     axios.get('/whoami')
     .then(function(res){
       _this.currentuserId = res.data.user_id
-      if (res.status != 200) {
-        _this.currentuserId = ''
-      }
     })
     .catch(function(error){
       console.log(error)
+        _this.currentuserId = null
     })
   }
 }
