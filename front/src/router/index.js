@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Signup from '@/components/Signup'
 import Login from '@/components/Login'
 import User from '@/components/User'
+import NewProductForm from '@/components/NewProductForm'
 
 Vue.use(Router)
 
@@ -38,6 +39,7 @@ export default new Router({
     {
       path: '/users/:id/products/new',
       name: 'products-new',
+      component: NewProductForm,
       props: route => ({
         id: String(route.params.id)
       })
