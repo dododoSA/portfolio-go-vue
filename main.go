@@ -137,6 +137,17 @@ func postLoginHandler(c echo.Context) error {
 
 }
 
+func postLogoutHandler(c echo.Context) error {
+	sess, err := session.Get("sessions", c)
+	if err != nil {
+		fmt.Println(err)
+		return c.String(http.StatusInternalServerError, "something wrong in getting session")
+	}
+	sess.Options.MaxAge = -1
+	sess.Save(c.Request(), c.Response())
+	return c.NoContent(http.StatusOK)
+}
+
 func checkLogin(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		sess, err := session.Get("sessions", c)
@@ -256,6 +267,7 @@ func main() {
 	e.POST("/login", postLoginHandler)
 	e.POST("/users/:id/products/create", postCreateProductHandler)
 	e.POST("/signup", postSignUpHandler)
+	e.POST("/logout", postLogoutHandler)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }
