@@ -50,7 +50,7 @@ export default {
   computed: {
     ...mapState(['currentuserId']),
     isLoggedIn: function(){
-      return this.$store.state.currntuserId != null
+      return this.$store.state.currntuserId
     }
   }
 }
