@@ -38,7 +38,7 @@ export default {
         this.$router.push('/signup')
       },
       user: function() {
-        this.$router.push('/users/' + this.$store.state.currentuserId)
+        this.$router.push('/users/' + this.$store.getters.currntuserId)
       },
       login: function() {
         this.$router.push('/login')
@@ -50,7 +50,7 @@ export default {
   computed: {
     ...mapState(['currentuserId']),
     isLoggedIn: function(){
-      return this.$store.state.currntuserId
+      return this.$store.getters.currntuserId != null
     }
   }
 }
