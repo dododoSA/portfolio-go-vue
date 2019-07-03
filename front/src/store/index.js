@@ -21,7 +21,7 @@ const mutations = {
   },
   [GET_FAILURE] (state, error) {
     console.log(error)
-    state.currentuserId = null
+    state.currentuserId = ''
   },
   [LOGOUT] (state) {
     state.currentuserId = ''
@@ -41,13 +41,15 @@ const actions = {
   }
 }
 
+const getters = {
+  currentuserId: state => {
+    return state.currentuserId
+  }
+}
+
 export default new Vuex.Store({
   state: state,
   mutations: mutations,
   actions: actions,
-  getters: {
-    currentuserId (state) {
-      return this.state.currentuserId
-    }
-  }
+  getters: getters
 })
