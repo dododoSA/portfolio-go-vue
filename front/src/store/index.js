@@ -8,32 +8,38 @@ import {
 
 Vue.use(Vuex)
 
+const state = {
+  currentuserId: ''
+}
+
+const mutations = {
+  [GET_SUCCESS] (state, data) {
+    console.log('GET_ME_SUCCESS')
+    state.currentuserId = data.user_id
+  },
+  [GET_FAILURE] (state, error) {
+    console.log(error)
+    state.currentuserId = null
+  }
+}
+
+const actions = {
+  [GET_ME] () {
+    let _this = this
+    axios.get('/whoami')
+      .then(function (res) {
+        _this.commit(GET_SUCCESS, res.data)
+      })
+      .catch(function (error) {
+        _this.commit(GET_FAILURE, error)
+      })
+  }
+}
+
 export default new Vuex.Store({
-  state: {
-    currentuserId: ''
-  },
-  mutations: {
-    [GET_SUCCESS] (state, data) {
-      console.log('GET_ME_SUCCESS')
-      state.currentuserId = data.user_id
-    },
-    [GET_FAILURE] (state, error) {
-      console.log(error)
-      state.currentuserId = null
-    }
-  },
-  actions: {
-    [GET_ME] () {
-      let _this = this
-      axios.get('/whoami')
-        .then(function (res) {
-          _this.commit(GET_SUCCESS, res.data)
-        })
-        .catch(function (error) {
-          _this.commit(GET_FAILURE, error)
-        })
-    }
-  },
+  state: state,
+  mutations: mutations,
+  actions: actions,
   getters: {
     currentuserId (state) {
       return state.currentuserId
