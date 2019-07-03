@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import {
   GET_ME, GET_FAILURE, GET_SUCCESS
-} from ''
+} from './mutation-types.js'
 
 Vue.use(Vuex)
 
