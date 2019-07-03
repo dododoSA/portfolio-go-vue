@@ -33,7 +33,7 @@ export default {
                 .then(function(response){
                     console.log(response)
 
-                    _this.$router.push('/users/' + currentuserId)
+                    _this.$router.push('/users/' + this.$store.state.currentuserId)
                 })
                 .catch(function(error){
                     console.log(error)
