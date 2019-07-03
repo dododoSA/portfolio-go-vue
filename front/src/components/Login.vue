@@ -30,6 +30,7 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
+                    _this.$store.dispatch('GET_ME')
                     _this.$router.push('/users/' + _this.$store.state.currentuserId)
                 })
                 .catch(function (error){
