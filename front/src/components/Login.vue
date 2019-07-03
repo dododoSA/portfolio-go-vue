@@ -33,11 +33,11 @@ export default {
                     console.log(response)
                     res_s = response.status
                     _this.$store.dispatch('GET_ME')
-                    console.log(res_s)
                 })
                 .catch(function (error){
                     console.log(error)
                 })
+                    console.log(res_s)
                 if(res_s < 300){
                     _this.$router.push('/users/' + _this.$store.getters.currentuserId)
                 }
