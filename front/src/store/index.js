@@ -10,18 +10,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentuserId: ''
+    currentuserId: null
   },
   mutations: {
     [GET_SUCCESS] (state, data) {
       console.log('GET_ME_SUCCESS')
       state.currentuserId = data.user_id
-      if (state.currentuserId === '') {
-        state.currentuserId = null
-      }
     },
     [GET_FAILURE] (state, error) {
       console.log(error)
+      state.currentuserId = null
     }
   },
   actions: {

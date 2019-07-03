@@ -36,7 +36,7 @@ export default {
         this.$router.push('/signup')
       },
       user: function() {
-        this.$router.push('/users/' + currentuserId)
+        this.$router.push('/users/' + String(currentuserId)
       },
       login: function() {
         this.$router.push('/login')
