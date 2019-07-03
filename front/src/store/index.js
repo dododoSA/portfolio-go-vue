@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentuserId: null
+    currentuserId: ''
   },
   mutations: {
     [GET_SUCCESS] (state, data) {
