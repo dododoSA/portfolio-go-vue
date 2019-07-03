@@ -23,7 +23,7 @@ export default {
     methods: {
         logIn:function(){
             let _this = this
-            let res
+            let res_s
             if (this.username != '' && this.password != ''){
                 axios.post('/login', {
                     username: this.username,
@@ -31,13 +31,16 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    res = response
+                    res_s = response.status
                     _this.$store.dispatch('GET_ME')
-                    _this.$router.push('/users/' + _this.$store.getters.currentuserId)
+                    
                 })
                 .catch(function (error){
                     console.log(error)
                 })
+                if(res_s < 300){
+                    _this.$router.push('/users/' + _this.$store.getters.currentuserId)
+                }
             }
         }
     },
