@@ -22,9 +22,11 @@ export default {
   name: 'App',
   methods: {
       logout: function (){
+        let _this = this
           axios.post("/logout")
           .then(function(response){
               console.log(response)
+              _this.$store.commit('LOGOUT')
           })
           .catch(function(error){
               console.log(error)

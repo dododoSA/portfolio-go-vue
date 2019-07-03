@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 import {
-  GET_ME, GET_FAILURE, GET_SUCCESS
+  GET_ME, GET_FAILURE, GET_SUCCESS, LOGOUT
 } from './mutation-types.js'
 
 Vue.use(Vuex)
@@ -20,6 +20,9 @@ const mutations = {
   [GET_FAILURE] (state, error) {
     console.log(error)
     state.currentuserId = null
+  },
+  [LOGOUT] (state) {
+    state.currentuserId = ''
   }
 }
 
