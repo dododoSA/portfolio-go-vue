@@ -8,6 +8,8 @@ import {
 
 Vue.use(Vuex)
 
+Vue.config.devtools = true
+
 const state = {
   currentuserId: ''
 }
