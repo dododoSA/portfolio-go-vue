@@ -3,10 +3,10 @@
     <nav>
       <ul style="list-style: none;">
         <li><router-link to="/">Home</router-link></li>
-        <li v-if="isLoggedIn"><a href="#" @click="user">User</a></li> 
-        <li v-if="!isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
-        <li v-if="!isLoggedIn"><a href="#" @click="login">Login</a></li>
-        <li v-if="isLoggedIn"><a href="#" @click="logout">ログアウト</a></li>
+        <li v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></li> 
+        <li v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
+        <li v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></li>
+        <li v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></li>
       </ul>
     </nav>
     <img src="./assets/logo.png">
@@ -38,7 +38,7 @@ export default {
         this.$router.push('/signup')
       },
       user: function() {
-        this.$router.push('/users/' + currentuserId)
+        this.$router.push('/users/' + this.$store.getters.currentuserId)
       },
       login: function() {
         this.$router.push('/login')
@@ -46,14 +46,6 @@ export default {
   },
   created: function(){
     this.$store.dispatch('GET_ME')
-  },
-  computed: {
-    currntuserId() {
-      return this.$store.getters.currentuserId
-    },
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn
-    }
   }
 }
 </script>
