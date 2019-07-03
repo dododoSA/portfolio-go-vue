@@ -38,7 +38,7 @@ export default {
                     console.log(error)
                 })
             }
-            if(res.state == 200){
+            if(res.status == 200){
                 _this.$router.push('/users/' + _this.$store.getters.currentuserId)
             }
         }
