@@ -23,7 +23,7 @@ export default {
     methods: {
         logIn:function(){
             let _this = this
-            let res_s
+            let res_s = 500
             if (this.username != '' && this.password != ''){
                 axios.post('/login', {
                     username: this.username,
