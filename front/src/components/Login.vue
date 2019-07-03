@@ -21,7 +21,7 @@ export default {
         }
     },
     methods: {
-        logIn: function(){
+        logIn:function(){
             let _this = this
             let res
             if (this.username != '' && this.password != ''){
@@ -33,13 +33,11 @@ export default {
                     console.log(response)
                     res = response
                     _this.$store.dispatch('GET_ME')
+                    _this.$router.push('/users/' + _this.$store.getters.currentuserId)
                 })
                 .catch(function (error){
                     console.log(error)
                 })
-            }
-            if(res.status == 200){
-                _this.$router.push('/users/' + _this.$store.getters.currentuserId)
             }
         }
     },
