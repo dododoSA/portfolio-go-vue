@@ -33,7 +33,6 @@ export default {
                 .then(function(response){
                     console.log(response)
 
-                    _this.$store.dispatch('GET_ME')
                     _this.$router.push('/users/' + currentuserId)
                 })
                 .catch(function(error){
@@ -44,6 +43,9 @@ export default {
     },
     computed: {
         ...mapState(['currentuserId'])
+    },
+    created(){
+        this.$store.dispatch('GET_ME')
     }
 }
 </script>

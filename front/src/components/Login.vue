@@ -30,7 +30,6 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    _this.$store.dispatch('GET_ME')
                     _this.$router.push('/users/' + String(response.data.user_id))
                 })
                 .catch(function (error){
@@ -38,6 +37,9 @@ export default {
                 })
             }
         }
+    },
+    created() {
+        this.$store.dispatch('GET_ME')
     }
 }
 </script>
