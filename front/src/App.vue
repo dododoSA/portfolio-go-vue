@@ -3,10 +3,10 @@
     <nav>
       <ul style="list-style: none;">
         <li><router-link to="/">Home</router-link></li>
-        <li v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></li> 
-        <li v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
-        <li v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></li>
-        <li v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></li>
+        <li v-if="this.$store.getters.isLoggedIn == true"><a href="#" @click="user">User</a></li> 
+        <li v-if="this.$store.getters.isLoggedIn == false"><a href="#" @click="signup">SignUp</a></li>
+        <li v-if="this.$store.getters.isLoggedIn == false"><a href="#" @click="login">Login</a></li>
+        <li v-if="this.$store.getters.isLoggedIn == true"><a href="#" @click="logout">ログアウト</a></li>
       </ul>
     </nav>
     <img src="./assets/logo.png">
