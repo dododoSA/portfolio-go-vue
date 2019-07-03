@@ -26,12 +26,13 @@ export default new Vuex.Store({
   },
   actions: {
     [GET_ME] () {
+      let _this = this
       axios.get('/whoami')
         .then(function (res) {
-          this.commit(GET_SUCCESS, res.data)
+          _this.commit(GET_SUCCESS, res.data)
         })
         .catch(function (error) {
-          this.commit(GET_FAILURE, error)
+          _this.commit(GET_FAILURE, error)
         })
     }
   },
