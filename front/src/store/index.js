@@ -46,7 +46,7 @@ const getters = {
     return state.currentuserId
   },
   isLoggedIn: state => {
-    return !state.currentuserId
+    return state.currentuserId
   }
 }
 
