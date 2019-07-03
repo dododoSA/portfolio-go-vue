@@ -15,11 +15,11 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex';
 export default {
     name: 'User',
     props: {
-        id: String,
-        currentuserId: String
+        id: String
     },//ユーザーのid 複数おｋにするつもり
     data: () => {
         return {
@@ -35,7 +35,10 @@ export default {
         .catch(function(error){
             console.log(error)
 		})
-	}
+    },
+    computed: {
+        ...mapState(['currentuserId'])
+    }
 }
 </script>
 

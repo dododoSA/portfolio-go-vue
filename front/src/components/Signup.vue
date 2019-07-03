@@ -12,6 +12,8 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
+
 export default {
     name: 'Signup',
     data () {
@@ -30,19 +32,18 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    axios.get('/whoami')
-					.then(function(res){
-                        _this.$router.push('/users/' + res.data.user_id)
-					})
-					.catch(function(error){
-						console.log(error)
-					})
+
+                    _this.$store.dispatch('GET_ME')
+                    _this.$router.push('/users/' + currentuserId)
                 })
                 .catch(function(error){
                     console.log(error)
                 })
             }
         }
+    },
+    computed: {
+        ...mapState(['currentuserId'])
     }
 }
 </script>

@@ -2,6 +2,7 @@
   <div id="app">
     <nav>
       <ul style="list-style: none;">
+        <li><router-link to="/">Home</router-link></li>
         <li v-if="currntuserId != null"><a href="#" @click="user">User</a></li> 
         <li v-if="currntuserId == null"><a href="#" @click="signup">SignUp</a></li>
         <li v-if="currntuserId == null"><a href="#" @click="login">Login</a></li>
@@ -15,13 +16,10 @@
 
 <script>
 import axios from 'axios'
+import {mapState} from 'vuex'
+
 export default {
   name: 'App',
-  data(){
-    return {
-      currentuserId: ''
-    }
-  },
   methods: {
       logout: function (){
           axios.post("/logout")
@@ -38,22 +36,17 @@ export default {
         this.$router.push('/signup')
       },
       user: function() {
-        this.$router.push('/users/' + this.currentuserId)
+        this.$router.push('/users/' + currentuserId)
       },
       login: function() {
         this.$router.push('/login')
       }
   },
   created: function(){
-    let _this = this
-    axios.get('/whoami')
-    .then(function(res){
-      _this.currentuserId = res.data.user_id
-    })
-    .catch(function(error){
-      console.log(error)
-        _this.currentuserId = null
-    })
+    this.$store.dispatch('GET_ME')
+  },
+  computed: {
+    ...mapState(['currentuserId'])
   }
 }
 </script>

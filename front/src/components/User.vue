@@ -5,13 +5,14 @@
     <br/>
     <p v-if="userdata.profile != ''">{{userdata.profile}}</p>
     
-    <product :id="id" :currentuserId="currentuserId"></product>
+    <product :id="id"></product>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Product from './Product.vue'
+import { mapState } from 'vuex';
 export default {
     name: 'User',
     props: {
@@ -20,7 +21,6 @@ export default {
     data: () => {
         return {
             userdata: {},
-			currentuserId: ''
         }
     },
     created: function() {
@@ -33,13 +33,6 @@ export default {
             console.log(error)
         })
         
-		axios.get('/whoami')
-		.then(function(response){
-			_this.currentuserId = response.data.user_id
-        })
-        .catch(function(error){
-            console.log(error)
-        })
     },
     components: {
         Product
