@@ -17,6 +17,7 @@
 <script>
 import axios from 'axios'
 import {mapState, mapMutations} from 'vuex'
+import {LOGOUT} from './store/mutation-types.js'
 
 export default {
   name: 'App',
