@@ -47,7 +47,7 @@ export default new Vuex.Store({
   actions: actions,
   getters: {
     currentuserId (state) {
-      return state.currentuserId
+      return this.state.currentuserId
     }
   }
 })
