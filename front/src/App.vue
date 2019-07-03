@@ -16,17 +16,18 @@
 
 <script>
 import axios from 'axios'
-import {mapState} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'App',
   methods: {
+      ...mapMutations({LOGOUT}),
       logout: function (){
         let _this = this
           axios.post("/logout")
           .then(function(response){
               console.log(response)
-              _this.$store.commit('LOGOUT')
+              _this.LOGOUT()
           })
           .catch(function(error){
               console.log(error)
