@@ -21,7 +21,7 @@ const mutations = {
   },
   [GET_FAILURE] (state, error) {
     console.log(error)
-    state.currentuserId = ''
+    state.currentuserId = null
   },
   [LOGOUT] (state) {
     state.currentuserId = ''
@@ -44,6 +44,9 @@ const actions = {
 const getters = {
   currentuserId: state => {
     return state.currentuserId
+  },
+  isLoggedIn: state => {
+    return state.currentuserId != null
   }
 }
 
