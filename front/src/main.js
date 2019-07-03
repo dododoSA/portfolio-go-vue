@@ -8,6 +8,7 @@ import store from './store'
 
 Vue.use(Vuex)
 Vue.config.productionTip = false
+Vue.config.devtools = true
 
 /* eslint-disable no-new */
 new Vue({
