@@ -33,6 +33,7 @@ export default {
             console.log(error)
         })
         
+        this.$store.dispatch('GET_ME')
     },
     components: {
         Product
