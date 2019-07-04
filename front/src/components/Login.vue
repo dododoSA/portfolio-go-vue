@@ -30,9 +30,12 @@ export default {
                 })
                 .then(function(response){
                     console.log(response)
-                    _this.$store.dispatch('GET_ME')
-                    .then(function(){
-                        _this.$router.push('/users/' + _this.$store.getters.currentuserId)
+                    axios.get('/whoami')
+                    .then(function (res) {
+                        _this.$router.push('/users/' + res.data.user_id)
+                    })
+                    .catch(function (error) {
+                        console.log(error)
                     })
                 })
                 .catch(function (error){
