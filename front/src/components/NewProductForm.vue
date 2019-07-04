@@ -2,7 +2,7 @@
     <div class="new-product-form">
         <h2>新規投稿</h2>
         <input type="text" placeholder="ProductName" v-model="productName">
-        <input type="text" placeholder="explain" v-model="intro">
+        <textarea placeholder="explain" v-model="intro"/>
         <button @click="postProduct">投稿</button>
     </div>
 </template>
