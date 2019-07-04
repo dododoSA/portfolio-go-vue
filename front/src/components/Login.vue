@@ -21,11 +21,11 @@ export default {
         }
     },
     methods: {
-        logIn:function(){
+        logIn:async function(){
             let _this = this
             let flag = false
             if (this.username != '' && this.password != ''){
-                axios.post('/login', {
+                await axios.post('/login', {
                     username: this.username,
                     password: this.password
                 })
