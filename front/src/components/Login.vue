@@ -39,7 +39,7 @@ export default {
                 .catch(function (error){
                     console.log(error)
                 })
-                    console.log(res_s)
+                console.log(flag)
                 if(flag){
                     _this.$router.push('/users/' + _this.$store.getters.currentuserId)
                 }
