@@ -3,6 +3,10 @@
         <h2>新規投稿</h2>
         <input type="text" placeholder="ProductName" v-model="productName">
         <textarea placeholder="explain" v-model="intro"/>
+        <label>
+            画像を選択
+            <input type="file" />
+        </label>
         <button @click="postProduct">投稿</button>
     </div>
 </template>
