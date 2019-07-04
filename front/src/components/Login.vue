@@ -21,9 +21,8 @@ export default {
         }
     },
     methods: {
-        logIn:async function(){
+        logIn:function(){
             let _this = this
-            let flag = false
             if (this.username != '' && this.password != ''){
                 axios.post('/login', {
                     username: this.username,
@@ -35,15 +34,14 @@ export default {
                         flag = true
                     }
                     console.log(flag)
-                    await _this.$store.dispatch('GET_ME')
+                    _this.$store.dispatch('GET_ME')
+                    .then(function(){
+                        _this.$router.push('/users/' + _this.$store.getters.currentuserId)
+                    })
                 })
                 .catch(function (error){
                     console.log(error)
                 })
-                console.log(flag)
-                if(flag){
-                    _this.$router.push('/users/' + _this.$store.getters.currentuserId)
-                }
             }
         }
     },

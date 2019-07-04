@@ -29,7 +29,7 @@ const mutations = {
 }
 
 const actions = {
-  [GET_ME] () {
+  async [GET_ME] () {
     let _this = this
     axios.get('/whoami')
       .then(function (res) {
