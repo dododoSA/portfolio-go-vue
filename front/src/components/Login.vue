@@ -34,6 +34,7 @@ export default {
                     if(response.status == 200){
                         flag = true
                     }
+                    console.log(flag)
                     _this.$store.dispatch('GET_ME')
                 })
                 .catch(function (error){
