@@ -103,6 +103,14 @@ func postSignUpHandler(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errB: %v", err))
 	}
 
+	sess, err := session.Get("sessions", c)
+	if err != nil {
+		fmt.Println(err)
+		return c.String(http.StatusInternalServerError, "something wrong in getting session")
+	}
+	sess.Values["userName"] = req.Username
+	sess.Save(c.Request(), c.Response())
+
 	return c.NoContent(http.StatusCreated)
 }
 
