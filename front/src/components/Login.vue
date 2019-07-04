@@ -25,7 +25,7 @@ export default {
             let _this = this
             let flag = false
             if (this.username != '' && this.password != ''){
-                await axios.post('/login', {
+                axios.post('/login', {
                     username: this.username,
                     password: this.password
                 })
@@ -35,7 +35,7 @@ export default {
                         flag = true
                     }
                     console.log(flag)
-                    _this.$store.dispatch('GET_ME')
+                    await _this.$store.dispatch('GET_ME')
                 })
                 .catch(function (error){
                     console.log(error)
