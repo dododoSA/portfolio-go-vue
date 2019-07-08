@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <nav class="navbar-expand-sm navbar-dark bg-dark">
-      <ul class="navbar-nav" style="list-style: none;">
-        <li class="nav-item"><router-link to="/">Home</router-link></li>
-        <li class="nav-item" v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></li> 
-        <li class="nav-item" v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
-        <li class="nav-item" v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></li>
-        <li class="nav-item" v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></li>
-      </ul>
-    </nav>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-nav>
+        <b-nav-item><router-link to="/">Home</router-link></li>
+        <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></b-nav-item> 
+        <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></b-nav-item>
+        <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></b-nav-item>
+        <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
     <img src="./assets/logo.png">
     <router-view/>
   </div>
