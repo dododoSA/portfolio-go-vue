@@ -3,7 +3,7 @@
         <h2>Log in</h2>
         <input type="text" placeholder="Username" v-model="username">
         <input type="password" placeholder="Password" v-model="password">
-        <button @click="logIn">ログイン</button>
+        <button class="btn btn-primary" @click="logIn">ログイン</button>
         <p>アカウントを持ってない方は
             <router-link to="/signup">こちら</router-link>
         </p>
