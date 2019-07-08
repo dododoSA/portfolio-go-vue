@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class="ml-auto" right>
           <b-nav-item><router-link to="/">Home</router-link></li>
           <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></b-nav-item> 
           <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></b-nav-item>
