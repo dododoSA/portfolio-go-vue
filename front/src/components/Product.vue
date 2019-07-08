@@ -4,7 +4,7 @@
         <h2>作品一覧</h2>
         <p>currentuserId:{{ currentuserId }}</p>
         <ul v-for="product in products" v-bind:key="product.id">
-            <img :src="image_src(product.productname)" width="100" />
+            <img src="../assets/aiueo.jpg" width="100" />
             <li>
                 {{product.productname}}
             </li>
