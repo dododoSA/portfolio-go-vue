@@ -39,7 +39,7 @@ export default {
 		})
     },
     computed: {
-        ...mapState(['currentuserId']),
+        ...mapState(['currentuserId'])
     },
     methods: {
         image_src: function(productname){
