@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 
@@ -194,7 +195,8 @@ func getProductsHandler(c echo.Context) error {
 }
 
 func postCreateProductHandler(c echo.Context) error {
-	req := NewProductRequestBody{}
+	productName := c.FormValue("name")
+	intro := c.FormValue("intro")
 
 	var userName string
 	userId := c.Param("id")
@@ -215,11 +217,30 @@ func postCreateProductHandler(c echo.Context) error {
 	}
 
 	//Validation
-	if req.Name == "" {
+	if productName == "" || intro == "" {
 		return c.String(http.StatusBadRequest, "項目が空です")
 	}
 
-	_, err = Db.Exec("INSERT INTO products (name, intro, user_id) values ($1, $2, $3)", req.Name, req.Intro, userId)
+	//Read file
+	file, err := c.FormFile("file")
+	if err != nil {
+		return err
+	}
+	src, err := file.Open()
+	if err != nil {
+		return err
+	}
+	defer src.Close()
+
+	f, err := os.Create("/tmp/" + string(userId) + ".jpg")
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	io.Copy(f, file)
+
+	_, err = Db.Exec("INSERT INTO products (name, intro, user_id) values ($1, $2, $3)", productName, intro, userId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errB: %v", err))
 	}

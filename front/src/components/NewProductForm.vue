@@ -5,7 +5,7 @@
         <textarea placeholder="explain" v-model="intro"/>
         <label>
             画像を選択
-            <input type="file" />
+            <input type="file" @change="selectedFile"/>
         </label>
         <button @click="postProduct">投稿</button>
     </div>
@@ -22,15 +22,25 @@ export default {
         return {
             productName: '',
             intro: '',
+            img: null
         }
     },
     methods: {
         postProduct: function() {
             let _this = this
             if (this.productName != '' && this.intro != ''){
+                let formData = new FormData()
+                formData.append("name", this.productname)
+                formData.append("intro", this.intro)
+                formData.append('img', this.img)
+                let config = {
+                    headers: {
+                        'content-type' : 'multipart/form-data'
+                    }
+                }
                 axios.post('/users/' + _this.id + '/products/create',{
-                    product_name: _this.productName,
-                    intro: _this.intro
+                    formData,
+                    config
                 })
                 .then(function(response){
                     console.log(response)
@@ -40,6 +50,11 @@ export default {
                     console.log(error)
                 })
             }
+        },
+        selectedFile: function(e) {
+            e.preventDefault()
+            let files = e.target.files
+            this.img = files[0]
         }
     }
 }
