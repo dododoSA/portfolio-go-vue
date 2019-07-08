@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-nav-brand><router-link to="/">Home</router-link></b-nav-item>
+      <b-nav-brand><router-link to="/">Home</router-link></b-nav-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto" right>
