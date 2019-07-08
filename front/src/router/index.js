@@ -1,14 +1,10 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Signup from '@/components/Signup'
 import Login from '@/components/Login'
 import User from '@/components/User'
 import NewProductForm from '@/components/NewProductForm'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(Router)
 
