@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <ul class="navbar-nav mr-auto" style="list-style: none;">
+    <nav class="navbar-right bg-primary">
+      <ul class="nav navbar-nav" style="list-style: none;">
         <li class="nav-item"><router-link to="/">Home</router-link></li>
         <li class="nav-item" v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></li> 
         <li class="nav-item" v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
