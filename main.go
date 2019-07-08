@@ -200,7 +200,7 @@ func postCreateProductHandler(c echo.Context) error {
 
 	var userName string
 	userId := c.Param("id")
-	c.Bind(&req)
+	//c.Bind(&req)
 
 	//ログインしているユーザーかどうかチェック（関数化したい）
 	err := Db.QueryRow("SELECT name FROM users WHERE id = $1", userId).Scan(&userName)
