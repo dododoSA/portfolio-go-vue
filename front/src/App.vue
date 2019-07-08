@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <nav>
-      <ul style="list-style: none;">
-        <li><router-link to="/">Home</router-link></li>
-        <li v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></li> 
-        <li v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
-        <li v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></li>
-        <li v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <ul class="navbar-nav mr-auto" style="list-style: none;">
+        <li class="nav-item"><router-link to="/">Home</router-link></li>
+        <li class="nav-item" v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></li> 
+        <li class="nav-item" v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></li>
+        <li class="nav-item" v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></li>
+        <li class="nav-item" v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></li>
       </ul>
     </nav>
     <img src="./assets/logo.png">
