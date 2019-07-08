@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         image_src: function(productname){
-            return "@/assets/" + productname + ".jpg"
+            return require("@/assets/" + productname + ".jpg")
         }
     }
 }
