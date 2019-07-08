@@ -222,7 +222,7 @@ func postCreateProductHandler(c echo.Context) error {
 	}
 
 	//Read file
-	file, err := c.FormFile("file")
+	file, err := c.FormFile("img")
 	if err != nil {
 		return c.String(http.StatusBadRequest, "ファイルがありません")
 	}
