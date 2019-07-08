@@ -195,7 +195,7 @@ func getProductsHandler(c echo.Context) error {
 }
 
 func postCreateProductHandler(c echo.Context) error {
-	productName := c.FormValue("name")
+	productName := c.FormValue("productname")
 	intro := c.FormValue("intro")
 
 	var userName string
@@ -211,11 +211,11 @@ func postCreateProductHandler(c echo.Context) error {
 	if err != nil {
 		fmt.Println(err)
 		return c.String(http.StatusInternalServerError, "something wrong in getting session")
-	}
-	if userName != sess.Values["userName"] {
-		return c.String(http.StatusForbidden, "invalid user")
+	}rbidden, "invalid user")
 	}
 
+	if userName != sess.Values["userName"] {
+		return c.String(http.StatusFo
 	//Validation
 	if productName == "" || intro == "" {
 		return c.String(http.StatusBadRequest, "項目が空です")

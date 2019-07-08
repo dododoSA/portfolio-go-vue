@@ -30,7 +30,7 @@ export default {
             let _this = this
             if (this.productName != '' && this.intro != ''){
                 let formData = new FormData()
-                formData.append("name", this.productname)
+                formData.append("productname", this.productname)
                 formData.append("intro", this.intro)
                 formData.append('img', this.img)
                 let config = {
@@ -38,10 +38,10 @@ export default {
                         'content-type' : 'multipart/form-data'
                     }
                 }
-                axios.post('/users/' + _this.id + '/products/create',{
+                axios.post('/users/' + _this.id + '/products/create',
                     formData,
                     config
-                })
+                )
                 .then(function(response){
                     console.log(response)
                     _this.$router.push('/users/'+_this.id)
