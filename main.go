@@ -232,7 +232,7 @@ func postCreateProductHandler(c echo.Context) error {
 	}
 	defer src.Close()
 
-	filename := "/front/src/assets/" + productName + ".jpg"
+	filename := "front/src/assets/" + productName + ".jpg"
 	f, err := os.Create(filename)
 	if err != nil {
 		return c.String(http.StatusBadRequest, "ファイルを作成できませんでした")
