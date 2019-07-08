@@ -241,7 +241,7 @@ func postCreateProductHandler(c echo.Context) error {
 
 	io.Copy(f, src)
 
-	_, err = Db.Exec("INSERT INTO products (name, intro, img_name, user_id) values ($1, $2, $3)", productName, intro, filename, userId)
+	_, err = Db.Exec("INSERT INTO products (name, intro, img_name, user_id) values ($1, $2, $3, $4)", productName, intro, filename, userId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errB: %v", err))
 	}
