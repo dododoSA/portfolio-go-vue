@@ -238,7 +238,7 @@ func postCreateProductHandler(c echo.Context) error {
 	}
 	defer f.Close()
 
-	io.Copy(f, file)
+	io.Copy(f, src)
 
 	_, err = Db.Exec("INSERT INTO products (name, intro, user_id) values ($1, $2, $3)", productName, intro, userId)
 	if err != nil {
