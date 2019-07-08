@@ -195,7 +195,7 @@ func getProductsHandler(c echo.Context) error {
 }
 
 func postCreateProductHandler(c echo.Context) error {
-	productName := c.FormValue("productname")
+	productName := c.FormValue("name")
 	intro := c.FormValue("intro")
 
 	var userName string
@@ -232,7 +232,8 @@ func postCreateProductHandler(c echo.Context) error {
 	}
 	defer src.Close()
 
-	f, err := os.Create("/tmp/" + string(userId) + ".jpg")
+	filename := "/tmp/" + string(userId) + ".jpg"
+	f, err := os.Create(filename)
 	if err != nil {
 		return c.String(http.StatusBadRequest, "ファイルを作成できませんでした")
 	}
@@ -240,7 +241,7 @@ func postCreateProductHandler(c echo.Context) error {
 
 	io.Copy(f, src)
 
-	_, err = Db.Exec("INSERT INTO products (name, intro, user_id) values ($1, $2, $3)", productName, intro, userId)
+	_, err = Db.Exec("INSERT INTO products (name, intro, img_name, user_id) values ($1, $2, $3)", productName, intro, filename, userId)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, fmt.Sprintf("db errB: %v", err))
 	}
