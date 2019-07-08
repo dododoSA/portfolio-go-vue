@@ -224,17 +224,17 @@ func postCreateProductHandler(c echo.Context) error {
 	//Read file
 	file, err := c.FormFile("file")
 	if err != nil {
-		return err
+		return c.String(http.StatusBadRequest, "ファイルがありません")
 	}
 	src, err := file.Open()
 	if err != nil {
-		return err
+		return c.String(http.StatusBadRequest, "ファイルを開けません")
 	}
 	defer src.Close()
 
 	f, err := os.Create("/tmp/" + string(userId) + ".jpg")
 	if err != nil {
-		return err
+		return c.String(http.StatusBadRequest, "ファイルを作成できませんでした")
 	}
 	defer f.Close()
 
