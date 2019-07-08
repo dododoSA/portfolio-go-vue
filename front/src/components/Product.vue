@@ -40,6 +40,8 @@ export default {
     },
     computed: {
         ...mapState(['currentuserId']),
+    },
+    methods: {
         image_src: function(productname){
             return require("./assets/" + productname + ".png")
         }
