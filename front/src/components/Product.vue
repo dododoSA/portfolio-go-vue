@@ -4,6 +4,7 @@
         <h2>作品一覧</h2>
         <p>currentuserId:{{ currentuserId }}</p>
         <ul v-for="product in products" v-bind:key="product.id">
+            <img :sec="image_src(product.productname)" width="100" />
             <li>
                 {{product.productname}}
             </li>
@@ -24,7 +25,7 @@ export default {
     },//ユーザーのid 複数おｋにするつもり
     data: () => {
         return {
-						products: {}
+			products: {}
         }
     },
     created: function() {
@@ -38,7 +39,10 @@ export default {
 		})
     },
     computed: {
-        ...mapState(['currentuserId'])
+        ...mapState(['currentuserId']),
+        image_src: function(productname){
+            return require("./assets/" + productname + ".png")
+        }
     }
 }
 </script>
