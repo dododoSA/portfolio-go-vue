@@ -30,7 +30,7 @@ export default {
             let _this = this
             if (this.productName != '' && this.intro != ''){
                 let formData = new FormData()
-                formData.append("name", this.productname)
+                formData.append("product_name", this.productname)
                 formData.append("intro", this.intro)
                 formData.append('img', this.img)
                 let config = {

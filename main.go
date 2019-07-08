@@ -195,7 +195,7 @@ func getProductsHandler(c echo.Context) error {
 }
 
 func postCreateProductHandler(c echo.Context) error {
-	productName := c.FormValue("name")
+	productName := c.FormValue("product_name")
 	intro := c.FormValue("intro")
 
 	var userName string
