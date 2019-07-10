@@ -2,15 +2,12 @@
   <div id="app">
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-nav-brand><router-link to="/">Home</router-link></b-nav-brand>
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav class="ml-auto" right>
-          <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></b-nav-item> 
-          <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></b-nav-item>
-          <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></b-nav-item>
-          <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></b-nav-item>
-        </b-navbar-nav>
-      <b-collapse>
+      <b-navbar-nav class="ml-auto" right>
+        <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></b-nav-item> 
+        <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="signup">SignUp</a></b-nav-item>
+        <b-nav-item v-if="!this.$store.getters.isLoggedIn"><a href="#" @click="login">Login</a></b-nav-item>
+        <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="logout">ログアウト</a></b-nav-item>
+      </b-navbar-nav>
     </b-navbar>
     <img src="./assets/logo.png">
     <router-view/>

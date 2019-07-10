@@ -7,7 +7,7 @@
             画像を選択
             <input type="file" @change="selectedFile"/>
         </label>
-        <button @click="postProduct">投稿</button>
+        <button class="btn btn-primary" @click="postProduct">投稿</button>
     </div>
 </template>
 
