@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar type="dark" variant="dark">
       <b-nav-brand><router-link to="/">Home</router-link></b-nav-brand>
       <b-navbar-nav class="ml-auto" right>
         <b-nav-item v-if="this.$store.getters.isLoggedIn"><a href="#" @click="user">User</a></b-nav-item> 

@@ -10,6 +10,7 @@
             <p>
                 {{product.intro}}
             </p>
+            <br/>
         </div>
     </div>
 </template>
