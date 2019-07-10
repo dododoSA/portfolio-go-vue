@@ -2,7 +2,7 @@
     <div class="products">
 			<router-link :to="{ path: '/users/'+ id + '/products/new'}" v-if="currentuserId == id">新規投稿</router-link>
         <h2>作品一覧</h2>
-        <ul v-for="product in products" v-bind:key="product.id">
+        <div v-for="product in products" v-bind:key="product.id">
             <img src="../assets/aiueo.jpg" width="100" />
             <h3>
                 {{product.productname}}
@@ -10,7 +10,7 @@
             <p>
                 {{product.intro}}
             </p>
-        </ul>
+        </div>
     </div>
 </template>
 
