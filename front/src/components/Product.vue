@@ -4,12 +4,12 @@
         <h2>作品一覧</h2>
         <ul v-for="product in products" v-bind:key="product.id">
             <img src="../assets/aiueo.jpg" width="100" />
-            <li>
+            <h3>
                 {{product.productname}}
-            </li>
-            <li>
+            </h3>
+            <p>
                 {{product.intro}}
-            </li>
+            </p>
         </ul>
     </div>
 </template>
