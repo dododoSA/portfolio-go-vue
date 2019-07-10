@@ -2,11 +2,14 @@
     <div class="new-product-form">
         <h2>新規投稿</h2>
         <input type="text" placeholder="ProductName" v-model="productName">
+        <br/>
         <textarea placeholder="explain" v-model="intro"/>
+        <br/>
         <label>
             画像を選択
             <input type="file" @change="selectedFile"/>
         </label>
+        <br/>
         <button class="btn btn-primary" @click="postProduct">投稿</button>
     </div>
 </template>
